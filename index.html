@@ -6,7 +6,7 @@
     <title>ホットペッパーグルメ検索（埼玉県限定）</title>
 </head>
 <body>
-    <h1>ホットペッパーグルメ検索（埼玉県限定）うあ</h1>
+    <h1>ホットペッパーグルメ検索（埼玉県限定）</h1>
     <form id="search-form">
         <input type="text" id="keyword">
         <button type="submit">検索</button>
@@ -22,7 +22,7 @@
             event.preventDefault();
             
             const keyword = document.getElementById("keyword").value;
-            document.getElementById("results").innerHTML = keyword;
+            document.getElementById("results").innerHTML = "検索中...";
             
             // CORS回避用のプロキシURL
             const proxyUrl = "https://api.allorigins.win/raw?url=";
@@ -34,7 +34,7 @@
                     throw new Error(`HTTPエラー: ${response.status}`);
                 }
                 const data = await response.json();
-                const filteredShops = data.results.shop.filter(shop => shop.large_area.code === "Z011");
+                const filteredShops = data.results.shop.filter(shop => shop.pref.name === "埼玉県");
                 displayResults(filteredShops);
             } catch (error) {
                 document.getElementById("results").innerHTML = "データ取得に失敗しました。";
@@ -63,3 +63,4 @@
     </script>
 </body>
 </html>
+
