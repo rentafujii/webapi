@@ -34,7 +34,7 @@
                     throw new Error(`HTTPエラー: ${response.status}`);
                 }
                 const data = await response.json();
-                const filteredShops = data.results.shop.filter(shop => shop.pref.name === "埼玉県");
+                const filteredShops = data.results.shop.filter(shop => shop.address.name === "埼玉県");
                 displayResults(filteredShops);
             } catch (error) {
                 document.getElementById("results").innerHTML = "データ取得に失敗しました。";
