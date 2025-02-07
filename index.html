@@ -34,7 +34,8 @@
                     throw new Error(`HTTPエラー: ${response.status}`);
                 }
                 const data = await response.json();
-                displayResults(data.results.shop);
+                const filteredShops = data.results.shop.filter(shop => shop.large_area.code === "Z011");
+                displayResults(filteredShops);
             } catch (error) {
                 document.getElementById("results").innerHTML = "データ取得に失敗しました。";
             }
